@@ -159,18 +159,23 @@ async def scan(robot, tilt=105, panStart=45, panEnd=135):
     return (vestAng, vestAngT, coverage)
       
 
-
+# This main will trigger a GRPC "no such device" error about the camera.
+# Sometimes it'll get a few pictures off before the error is thrown.
 async def main():
-
   robot = await setup()
   panAng, tiltAng, coverage = await scan(robot, tilt=105)
 
 
 
-'''  robot = await setup()
+'''  
+
+  # This is the follow puppy code. The logic is simple enough to recreate in a day.
+
+  #Setup the robot client
+  robot = await setup()
+
   panAng, tiltAng, coverage = await scan(robot, tilt=105)
   await moveForward(robot, 800, 200, True)
-
   usCheck = await getUSReading(robot, 3)
   print("ULTRASONIC", usCheck)
 
@@ -181,7 +186,9 @@ async def main():
     print("ULTRASONIC:", usCheck)
 
 
+  #Celebrate your victory!
   await spinRobot(robot, 500, 20, True)
+
   '''
 
 if __name__ == '__main__':
